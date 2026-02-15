@@ -724,7 +724,7 @@
         .gift-frame {
             position: relative;
             width: 100%;
-            aspect-ratio: 1/1;
+            aspect-ratio: 3/4;
             border: 2px solid var(--gold);
             padding: 10px;
             background: rgba(201, 169, 110, 0.03);
@@ -748,7 +748,7 @@
         .gift-image {
             width: 100%;
             height: 100%;
-            object-fit: cover;
+            object-fit: contain;
             display: block;
         }
 
@@ -911,6 +911,154 @@
             z-index: 2;
         }
 
+        /* ========== YES BUTTON ========== */
+        .yes-btn {
+            display: inline-block;
+            margin-top: 1.5rem;
+            padding: 1rem 3.5rem;
+            font-family: 'Cinzel', serif;
+            font-size: 1rem;
+            letter-spacing: 0.4em;
+            color: var(--deep-wine);
+            background: linear-gradient(135deg, var(--gold), var(--gold-light));
+            border: none;
+            cursor: pointer;
+            position: relative;
+            overflow: hidden;
+            transition: all 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            text-transform: uppercase;
+        }
+
+        .yes-btn::before {
+            content: '';
+            position: absolute;
+            inset: 2px;
+            border: 1px solid rgba(61, 21, 37, 0.2);
+            pointer-events: none;
+        }
+
+        .yes-btn:hover {
+            transform: scale(1.08);
+            box-shadow: 0 0 40px var(--gold-glow), 0 0 80px rgba(201, 169, 110, 0.15);
+        }
+
+        .yes-btn.clicked {
+            background: linear-gradient(135deg, var(--rose), var(--rose-deep));
+            color: var(--cream);
+            transform: scale(1.15);
+        }
+
+        .yes-response {
+            font-family: 'Great Vibes', cursive;
+            font-size: clamp(1.8rem, 4vw, 2.5rem);
+            color: var(--gold);
+            margin-top: 1.5rem;
+            opacity: 0;
+            transition: opacity 1s ease;
+            text-shadow: 0 0 30px rgba(201, 169, 110, 0.3);
+        }
+
+        .yes-response.visible { opacity: 1; }
+
+        /* Confetti & Hearts burst */
+        .burst-container {
+            position: fixed;
+            inset: 0;
+            pointer-events: none;
+            z-index: 9999;
+            overflow: hidden;
+        }
+
+        .burst-heart, .burst-confetti {
+            position: absolute;
+            animation: burst-fall linear forwards;
+        }
+
+        @keyframes burst-fall {
+            0% { transform: translateY(0) rotate(0deg) scale(1); opacity: 1; }
+            80% { opacity: 0.8; }
+            100% { transform: translateY(100vh) rotate(720deg) scale(0.3); opacity: 0; }
+        }
+
+        /* ========== 15 REASONS SECTION ========== */
+        .reasons-section {
+            padding: 6rem 2rem;
+            position: relative;
+            background: linear-gradient(180deg, var(--charcoal) 0%, rgba(61, 21, 37, 0.3) 50%, var(--charcoal) 100%);
+        }
+
+        .reasons-grid {
+            max-width: 800px;
+            margin: 0 auto;
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+        }
+
+        .reason-card {
+            display: flex;
+            align-items: flex-start;
+            gap: 1.5rem;
+            padding: 1.8rem 2rem;
+            background: linear-gradient(160deg, rgba(61, 21, 37, 0.35) 0%, rgba(26, 18, 22, 0.5) 100%);
+            border: 1px solid rgba(201, 169, 110, 0.1);
+            border-left: 2px solid var(--gold);
+            position: relative;
+            opacity: 0;
+            transform: translateX(-30px);
+            transition: opacity 0.8s ease, transform 0.8s ease;
+        }
+
+        .reason-card.visible {
+            opacity: 1;
+            transform: translateX(0);
+        }
+
+        .reason-num {
+            font-family: 'Great Vibes', cursive;
+            font-size: 2.5rem;
+            color: var(--gold);
+            line-height: 1;
+            min-width: 50px;
+            text-align: center;
+            opacity: 0.7;
+        }
+
+        .reason-text {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.1rem;
+            line-height: 1.8;
+            color: var(--cream);
+            opacity: 0.9;
+        }
+
+        .reason-text .gold {
+            color: var(--gold);
+            font-style: italic;
+        }
+
+        /* ========== GIFT CONFETTI BURST ========== */
+        .gift-sparkle {
+            position: absolute;
+            pointer-events: none;
+            z-index: 10;
+        }
+
+        .gift-sparkle-dot {
+            position: absolute;
+            width: 6px;
+            height: 6px;
+            background: var(--gold);
+            border-radius: 50%;
+            box-shadow: 0 0 8px var(--gold-glow);
+            animation: gift-sparkle-burst ease-out forwards;
+        }
+
+        @keyframes gift-sparkle-burst {
+            0% { transform: translate(0, 0) scale(1); opacity: 1; }
+            100% { opacity: 0; }
+        }
+
         /* ========== RESPONSIVE ========== */
         @media (max-width: 768px) {
             .hero-ring { display: none; }
@@ -948,9 +1096,8 @@
             <span></span><span></span><span></span><span></span>
         </div>
     </button>
-    <audio id="bgMusic" loop preload="auto" playsinline>
-        <source src="music/romantic-piano.mp3" type="audio/mpeg">
-        <source src="https://www.dropbox.com/s/ubci0uvjb61ut0g/0013.%20Romantic%20Piano%20and%20Strings%20-%20AShamaluevMusic.mp3?dl=1" type="audio/mpeg">
+    <audio id="bgMusic" loop preload="auto" playsinline autoplay muted>
+        <source src="music/a-thousand-years.mp3" type="audio/mpeg">
     </audio>
 
     <!-- ========== HERO ========== -->
@@ -1088,6 +1235,84 @@
         <span class="parallax-text">&#10084;&ensp; THROUGH IT ALL &ensp;&#10084;</span>
     </div>
 
+    <!-- ========== 15 REASONS I LOVE YOU ========== -->
+    <section class="reasons-section">
+        <div class="section-header reveal">
+            <h2>15 Reasons I Love You</h2>
+            <p>One for every Valentine we've shared</p>
+        </div>
+
+        <div class="reasons-grid">
+            <div class="reason-card">
+                <span class="reason-num">1</span>
+                <p class="reason-text">The way you <span class="gold">laugh with your whole body</span> — head back, eyes closed. It's the most beautiful sound in any room.</p>
+            </div>
+            <div class="reason-card">
+                <span class="reason-num">2</span>
+                <p class="reason-text">You chose me at U of I before I had anything to offer but my heart. <span class="gold">You saw who I was becoming</span> before I did.</p>
+            </div>
+            <div class="reason-card">
+                <span class="reason-num">3</span>
+                <p class="reason-text">The way you pray over our children — <span class="gold">quietly, fiercely, faithfully</span> — like a warrior on her knees.</p>
+            </div>
+            <div class="reason-card">
+                <span class="reason-num">4</span>
+                <p class="reason-text">You make our house a home. The meals, the details, the routines — <span class="gold">love is in every corner</span> you touch.</p>
+            </div>
+            <div class="reason-card">
+                <span class="reason-num">5</span>
+                <p class="reason-text">Your ambition is contagious. Watching you build <span class="gold">Altara Heights</span> from vision to reality lights a fire in me.</p>
+            </div>
+            <div class="reason-card">
+                <span class="reason-num">6</span>
+                <p class="reason-text">You never let me quit. When I wanted to give up, <span class="gold">you stood behind me and pushed</span>.</p>
+            </div>
+            <div class="reason-card">
+                <span class="reason-num">7</span>
+                <p class="reason-text">The way you love Gianna, Alanna, and Trey differently — because you know <span class="gold">each of them needs something unique</span>.</p>
+            </div>
+            <div class="reason-card">
+                <span class="reason-num">8</span>
+                <p class="reason-text">You are the most <span class="gold">intentional person I know</span>. Nothing you do is accidental — every move has love behind it.</p>
+            </div>
+            <div class="reason-card">
+                <span class="reason-num">9</span>
+                <p class="reason-text">You held my hand through losing my dad. <span class="gold">You carried grief that wasn't yours</span> because it was mine.</p>
+            </div>
+            <div class="reason-card">
+                <span class="reason-num">10</span>
+                <p class="reason-text">Your smile still does the same thing to me it did <span class="gold">fifteen years ago</span>. I'm not over it.</p>
+            </div>
+            <div class="reason-card">
+                <span class="reason-num">11</span>
+                <p class="reason-text">You are brilliant in rooms full of people who don't know <span class="gold">how lucky they are to hear you speak</span>.</p>
+            </div>
+            <div class="reason-card">
+                <span class="reason-num">12</span>
+                <p class="reason-text">You push through pain without complaining. <span class="gold">Your strength is quiet</span>, and that makes it louder.</p>
+            </div>
+            <div class="reason-card">
+                <span class="reason-num">13</span>
+                <p class="reason-text">The effort you've been pouring into us lately — <span class="gold">I see it, I feel it</span>, and it makes me fall deeper.</p>
+            </div>
+            <div class="reason-card">
+                <span class="reason-num">14</span>
+                <p class="reason-text">You make faith look beautiful. <span class="gold">Praying with you</span> is the most intimate thing we do.</p>
+            </div>
+            <div class="reason-card">
+                <span class="reason-num">15</span>
+                <p class="reason-text">After fifteen years, three kids, and everything life has thrown at us — <span class="gold">I would choose you all over again</span>. Every single time.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- DIVIDER -->
+    <div class="divider">
+        <span class="divider-line"></span>
+        <span class="divider-ornament">&#10022;</span>
+        <span class="divider-line"></span>
+    </div>
+
     <!-- ========== LOVE LETTER ========== -->
     <section class="letter-section">
         <div class="letter-wrapper">
@@ -1205,7 +1430,12 @@
             <div class="valentine-heart-icon">&#10084;</div>
             <h2 class="valentine-question">Will You Be My Valentine?</h2>
             <p class="valentine-sub">for the 15th time... and forever more</p>
+            <button class="yes-btn" id="yesBtn">Yes, Forever</button>
+            <p class="yes-response" id="yesResponse">I knew you'd say yes &#10084;</p>
         </div>
+
+        <!-- Burst container for hearts/confetti -->
+        <div class="burst-container" id="burstContainer"></div>
 
         <div class="gift-reveal reveal reveal-delay-2">
             <div class="gift-frame">
@@ -1334,9 +1564,30 @@
         /* ===== MUSIC ===== */
         const bgMusic = document.getElementById('bgMusic');
         const musicBars = document.getElementById('musicBars');
-        let isPlaying = false;
+        let isPlaying = true;
+        let isMuted = true;
 
-        document.getElementById('musicToggle').addEventListener('click', () => {
+        function unmuteMusic() {
+            if (isMuted) {
+                isMuted = false;
+                bgMusic.muted = false;
+                bgMusic.volume = 0.4;
+                musicBars.classList.add('playing');
+                document.removeEventListener('click', unmuteMusic);
+                document.removeEventListener('touchstart', unmuteMusic);
+                document.removeEventListener('keydown', unmuteMusic);
+            }
+        }
+        document.addEventListener('click', unmuteMusic, { once: true });
+        document.addEventListener('touchstart', unmuteMusic, { once: true });
+        document.addEventListener('keydown', unmuteMusic, { once: true });
+
+        bgMusic.play().catch(() => {});
+
+        document.getElementById('musicToggle').addEventListener('click', (e) => {
+            const wasMuted = isMuted;
+            unmuteMusic();
+            if (wasMuted) return;
             if (isPlaying) {
                 bgMusic.pause();
                 musicBars.classList.remove('playing');
@@ -1358,6 +1609,118 @@
                 }
             }
         });
+
+        /* ===== YES BUTTON BURST ===== */
+        const yesBtn = document.getElementById('yesBtn');
+        const yesResponse = document.getElementById('yesResponse');
+        const burstContainer = document.getElementById('burstContainer');
+
+        yesBtn.addEventListener('click', () => {
+            yesBtn.classList.add('clicked');
+            yesBtn.textContent = '❤ Always & Forever ❤';
+            setTimeout(() => yesResponse.classList.add('visible'), 600);
+
+            // Create hearts and confetti burst
+            const colors = ['#c9a96e', '#e8d5a8', '#d4838f', '#a85060', '#f5c6d0', '#fff'];
+            for (let i = 0; i < 80; i++) {
+                const el = document.createElement('div');
+                const isHeart = Math.random() > 0.4;
+                el.classList.add(isHeart ? 'burst-heart' : 'burst-confetti');
+                el.style.left = Math.random() * 100 + '%';
+                el.style.top = '-5%';
+                const size = isHeart ? (15 + Math.random() * 25) : (6 + Math.random() * 10);
+                const color = colors[Math.floor(Math.random() * colors.length)];
+                const duration = 2.5 + Math.random() * 3;
+                el.style.animationDuration = duration + 's';
+                el.style.animationDelay = (Math.random() * 1.5) + 's';
+
+                if (isHeart) {
+                    el.innerHTML = `<svg width="${size}" height="${size}" viewBox="0 0 24 24"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z" fill="${color}"/></svg>`;
+                } else {
+                    el.style.width = size + 'px';
+                    el.style.height = size * 0.6 + 'px';
+                    el.style.background = color;
+                    el.style.borderRadius = '2px';
+                }
+
+                burstContainer.appendChild(el);
+                setTimeout(() => el.remove(), (duration + 2) * 1000);
+            }
+        });
+
+        /* ===== 15 REASONS SCROLL REVEAL ===== */
+        const reasonObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                    reasonObserver.unobserve(entry.target);
+                }
+            });
+        }, { threshold: 0.15, rootMargin: '0px 0px -30px 0px' });
+
+        document.querySelectorAll('.reason-card').forEach((card, i) => {
+            card.style.transitionDelay = (i * 0.08) + 's';
+            reasonObserver.observe(card);
+        });
+
+        /* ===== GIFT CONFETTI BURST ON SCROLL ===== */
+        let giftBurstFired = false;
+        const giftFrame = document.querySelector('.gift-frame');
+        const giftObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting && !giftBurstFired) {
+                    giftBurstFired = true;
+                    giftObserver.unobserve(entry.target);
+                    createGiftSparkles(entry.target);
+                }
+            });
+        }, { threshold: 0.5 });
+
+        if (giftFrame) giftObserver.observe(giftFrame);
+
+        function createGiftSparkles(target) {
+            const rect = target.getBoundingClientRect();
+            const centerX = rect.left + rect.width / 2;
+            const centerY = rect.top + rect.height / 2;
+            const colors = ['#c9a96e', '#e8d5a8', '#d4838f', '#fff'];
+
+            for (let i = 0; i < 40; i++) {
+                const dot = document.createElement('div');
+                dot.style.position = 'fixed';
+                dot.style.pointerEvents = 'none';
+                dot.style.zIndex = '9999';
+                const size = 3 + Math.random() * 8;
+                const color = colors[Math.floor(Math.random() * colors.length)];
+                dot.style.width = size + 'px';
+                dot.style.height = size + 'px';
+                dot.style.background = color;
+                dot.style.borderRadius = '50%';
+                dot.style.boxShadow = `0 0 ${size * 2}px ${color}`;
+
+                const angle = (Math.PI * 2 * i) / 40 + (Math.random() * 0.5);
+                const distance = 80 + Math.random() * 200;
+                const endX = centerX + Math.cos(angle) * distance;
+                const endY = centerY + Math.sin(angle) * distance;
+
+                dot.style.left = centerX + 'px';
+                dot.style.top = centerY + 'px';
+                dot.style.transition = `all ${0.8 + Math.random() * 1.2}s cubic-bezier(0.25, 0.46, 0.45, 0.94)`;
+                dot.style.opacity = '1';
+
+                document.body.appendChild(dot);
+
+                requestAnimationFrame(() => {
+                    requestAnimationFrame(() => {
+                        dot.style.left = endX + 'px';
+                        dot.style.top = endY + 'px';
+                        dot.style.opacity = '0';
+                        dot.style.transform = `scale(0)`;
+                    });
+                });
+
+                setTimeout(() => dot.remove(), 2500);
+            }
+        }
 
         /* ===== SCROLL REVEAL ===== */
         const observer = new IntersectionObserver((entries) => {
