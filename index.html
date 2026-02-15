@@ -428,7 +428,8 @@
         .slide img {
             width: 100%;
             height: 100%;
-            object-fit: cover;
+            object-fit: contain;
+            object-position: center;
         }
 
         .slide-placeholder {
@@ -1156,7 +1157,16 @@
                 <div class="corner corner-br"></div>
 
                 <div class="slide active">
-                    <img src="IMG_20180223_123549.jpg" alt="Our memory">
+                    <img src="IMG_4526.JPG" alt="Our memory">
+                </div>
+                <div class="slide">
+                    <img src="IMG_5089.JPG" alt="Our memory" loading="lazy">
+                </div>
+                <div class="slide">
+                    <img src="IMG_6700.JPG" alt="Our memory" loading="lazy">
+                </div>
+                <div class="slide">
+                    <img src="IMG_20180223_123549.jpg" alt="Our memory" loading="lazy">
                 </div>
                 <div class="slide">
                     <img src="IMG_20180223_154454.jpg" alt="Our memory" loading="lazy">
@@ -1174,13 +1184,16 @@
                     <img src="00100sPORTRAIT_00100_BURST20190624165408003_COVER.jpg" alt="Our memory" loading="lazy">
                 </div>
                 <div class="slide">
+                    <img src="cplARjjOYwkMssenrcmVBFXKN3Xjt58.jpeg" alt="Our memory" loading="lazy">
+                </div>
+                <div class="slide">
                     <img src="IMG_20200125_215908_809.jpg" alt="Our memory" loading="lazy">
                 </div>
                 <div class="slide">
-                    <img src="PXL_20201024_214011284.jpg" alt="Our memory" loading="lazy">
+                    <img src="IMG_20201024_232633_283.jpg" alt="Our memory" loading="lazy">
                 </div>
                 <div class="slide">
-                    <img src="IMG_20201024_232633_283.jpg" alt="Our memory" loading="lazy">
+                    <img src="PXL_20201024_214011284.jpg" alt="Our memory" loading="lazy">
                 </div>
                 <div class="slide">
                     <img src="PXL_20201103_185358552.PORTRAIT-01.COVER.jpg" alt="Our memory" loading="lazy">
@@ -1201,34 +1214,7 @@
                     <img src="20211110_222641.jpg" alt="Our memory" loading="lazy">
                 </div>
                 <div class="slide">
-                    <img src="IMG_4526.JPG" alt="Our memory" loading="lazy">
-                </div>
-                <div class="slide">
-                    <img src="IMG_5089.JPG" alt="Our memory" loading="lazy">
-                </div>
-                <div class="slide">
-                    <img src="IMG_5978.JPG" alt="Our memory" loading="lazy">
-                </div>
-                <div class="slide">
-                    <img src="IMG_1181.JPG" alt="Our memory" loading="lazy">
-                </div>
-                <div class="slide">
-                    <img src="IMG_6700.JPG" alt="Our memory" loading="lazy">
-                </div>
-                <div class="slide">
                     <img src="PXL_20241101_160020272.MP.jpg" alt="Our memory" loading="lazy">
-                </div>
-                <div class="slide">
-                    <img src="FB_IMG_1769632894153.jpg" alt="Our memory" loading="lazy">
-                </div>
-                <div class="slide">
-                    <img src="cplAaE9+1VEKL67CgUvw62zgEGWzu6L.jpeg" alt="Our memory" loading="lazy">
-                </div>
-                <div class="slide">
-                    <img src="cplARjjOYwkMssenrcmVBFXKN3Xjt58.jpeg" alt="Our memory" loading="lazy">
-                </div>
-                <div class="slide">
-                    <img src="cplAQIl+MpkGPlATCfHbaCH1LgQfDdU-ANIMATION.gif" alt="Our memory" loading="lazy">
                 </div>
                 <div class="slide">
                     <img src="New Photos/20250611_211904.jpg" alt="Our memory" loading="lazy">
@@ -1282,6 +1268,21 @@
                     <img src="New Photos/20260213_203108.jpg" alt="Our memory" loading="lazy">
                 </div>
                 <div class="slide">
+                    <img src="IMG_5978.JPG" alt="Our memory" loading="lazy">
+                </div>
+                <div class="slide">
+                    <img src="IMG_1181.JPG" alt="Our memory" loading="lazy">
+                </div>
+                <div class="slide">
+                    <img src="FB_IMG_1769632894153.jpg" alt="Our memory" loading="lazy">
+                </div>
+                <div class="slide">
+                    <img src="cplAaE9+1VEKL67CgUvw62zgEGWzu6L.jpeg" alt="Our memory" loading="lazy">
+                </div>
+                <div class="slide">
+                    <img src="cplAQIl+MpkGPlATCfHbaCH1LgQfDdU-ANIMATION.gif" alt="Our memory" loading="lazy">
+                </div>
+                <div class="slide">
                     <img src="New Photos/FB_IMG_1764435356173.jpg" alt="Our memory" loading="lazy">
                 </div>
                 <div class="slide">
@@ -1291,7 +1292,7 @@
                     <img src="New Photos/FB_IMG_1769632866293.jpg" alt="Our memory" loading="lazy">
                 </div>
                 <div class="slide">
-                    <img src="20260214_220844.jpg" alt="Our 15th Valentine — Today" loading="lazy">
+                    <img src="New Photos/FB_IMG_1769632894153.jpg" alt="Our memory" loading="lazy">
                 </div>
 
                 <div class="slide-progress" id="slideProgress"></div>
@@ -1299,7 +1300,7 @@
 
             <div class="slideshow-nav">
                 <button class="nav-btn" id="prevSlide">&#8592;</button>
-                <div class="slide-counter" id="slideCounter">1 / 46</div>
+                <div class="slide-counter" id="slideCounter">1 / 45</div>
                 <button class="nav-btn" id="nextSlide">&#8594;</button>
             </div>
         </div>
@@ -1530,7 +1531,7 @@
     <script>
         /* ===== DAYS TOGETHER COUNTER ===== */
         (function initDaysCounter() {
-            const start = new Date('2011-02-14');
+            const start = new Date('2010-10-23');
             const today = new Date();
             const ms = today - start;
             const days = Math.floor(ms / (1000 * 60 * 60 * 24));
