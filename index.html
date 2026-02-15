@@ -1097,7 +1097,7 @@
         </div>
     </button>
     <audio id="bgMusic" loop preload="auto" playsinline autoplay muted>
-        <source src="music/a-thousand-years.mp3" type="audio/mpeg">
+        <source src="/music/a-thousand-years.mp3" type="audio/mpeg">
     </audio>
 
     <!-- ========== HERO ========== -->
@@ -1639,12 +1639,14 @@
                 document.removeEventListener('click', unmuteMusic);
                 document.removeEventListener('touchstart', unmuteMusic);
                 document.removeEventListener('keydown', unmuteMusic);
+                bgMusic.play().catch(() => {});
             }
         }
         document.addEventListener('click', unmuteMusic, { once: true });
         document.addEventListener('touchstart', unmuteMusic, { once: true });
         document.addEventListener('keydown', unmuteMusic, { once: true });
 
+        bgMusic.addEventListener('error', () => { musicBars.title = 'Music could not load'; });
         bgMusic.play().catch(() => {});
 
         document.getElementById('musicToggle').addEventListener('click', (e) => {
